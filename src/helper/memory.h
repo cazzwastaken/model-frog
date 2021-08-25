@@ -28,9 +28,10 @@ namespace m
 		return static_cast<T>(address + 4 + *reinterpret_cast<uint32_t*>(address));
 	}
 
+	// Put sigs here fam
 	inline struct Signatures
 	{
-
+		uint8_t* clCheckPureServerWhiteList = nullptr;
 	}sigs;
 
 	// Signature scanner :)

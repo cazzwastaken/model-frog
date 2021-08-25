@@ -6,7 +6,8 @@
 
 void m::Init()
 {
-
+    if (!(sigs.clCheckPureServerWhiteList = Scan("engine", "8B 0D ? ? ? ? 56 83 B9 ? ? ? ? ? 7E 6E ")))
+        throw std::runtime_error("Outdated pattern for clCheckPureServerWhiteList");
 }
 
 uint8_t* m::Scan(const char* module, const char* pattern) noexcept
