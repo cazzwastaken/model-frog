@@ -1,11 +1,8 @@
 #pragma once
-#include "netchannel.h"
+#include "../../helper/memory.h"
 
 class EngineClient
 {
 public:
-	NetChannelInfo* GetNetChannelInfo()
-	{
-		return m::Call<NetChannelInfo*>(this, 78);
-	}
+
 };
