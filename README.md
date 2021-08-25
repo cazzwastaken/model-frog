@@ -3,12 +3,12 @@ A very simple CS:GO model changer with an included `sv_pure` bypass.
 
 ## Usage
 * Getting Models
-	1. Models can be found [here](https://gamebanana.com/) 
+	1. Models can be found [here](https://gamebanana.com/mods/cats/7370) 
 	2. Extract into `game_dir\csgo\`
 
-* Applying the Models
+* Adding the Models
 	1. In `FindMdl()` hook, replace the models (see hooks.cpp)
-	2. Complile as `Release | x86'
+	2. Complile as `Release | x86`
 	3. .dll will be found in `build\model-frog.dll`
 
 * Using the Cheat
