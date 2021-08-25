@@ -1,15 +1,23 @@
-﻿# 👾 About
+﻿# 🐸 About
 A very simple CS:GO model changer with an included `sv_pure` bypass.
 
 ## Usage
-1. Models can be found [here](https://gamebanana.com/)
-2. Extract to `game_dir/csgo/`
-3. In `FindModel()`, replace your models
-4. Inject into CS:GO process before map load (see todo)
+* Getting Models
+	1. Models can be found [here](https://gamebanana.com/) 
+	2. Extract into `game_dir\csgo\`
+
+* Applying the Models
+	1. In `FindMdl()` hook, replace the models (see hooks.cpp)
+	2. Complile as `Release | x86'
+	3. .dll will be found in `build\model-frog.dll`
+
+* Using the Cheat
+	1. Inject model-frog into `csgo.exe` *before* loading into a map
+	2. Enjoy!
 
 ## Todo
 - [ ] Add a UI instead of hard-coding the models
-- [ ] Use precached models instead of FindModel to allow for instant model updates [src](https://www.unknowncheats.me/forum/counterstrike-global-offensive/214919-precache-models.html)
+- [ ] Use precached models instead of FindMdl to allow for instant model updates [src](https://www.unknowncheats.me/forum/counterstrike-global-offensive/214919-precache-models.html)
 
 ## Disclaimer
 I am not responsible for anything that happens while using this software.
