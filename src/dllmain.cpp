@@ -6,7 +6,7 @@
 // Error macro
 #define MESSAGE(message) \
 MessageBeep(MB_ICONSTOP); \
-MessageBoxA(NULL, message, "kakhack", MB_OK | MB_ICONERROR)
+MessageBoxA(NULL, message, "model-frog error", MB_OK | MB_ICONERROR)
 
 
 void Initialize(HMODULE module)
@@ -37,13 +37,15 @@ void Initialize(HMODULE module)
 		FreeLibraryAndExitThread(module, EXIT_SUCCESS);
 	}
 
-	//while (!GetAsyncKeyState(VK_END))
-		//std::this_thread::sleep_for(std::chrono::milliseconds(200));
+#ifdef _DEBUG
+	while (!GetAsyncKeyState(VK_END))
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
 	// Shutdown
-	//h::Shutdown();
+	h::Shutdown();
 
-	//FreeLibraryAndExitThread(module, EXIT_SUCCESS);
+	FreeLibraryAndExitThread(module, EXIT_SUCCESS);
+#endif
 }
 
 // Entry point
