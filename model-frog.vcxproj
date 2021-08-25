@@ -172,7 +172,6 @@
     <ClInclude Include="src\sdk\interfaces\engineclient.h" />
     <ClInclude Include="src\sdk\interfaces\filesystem.h" />
     <ClInclude Include="src\sdk\interfaces\mdlcache.h" />
-    <ClInclude Include="src\sdk\interfaces\netchannel.h" />
     <ClInclude Include="src\sdk\sdk.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
