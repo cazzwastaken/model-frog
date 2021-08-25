@@ -1,6 +1,6 @@
 #pragma once
 
-enum ClientFrameStage
+enum class ClientFrameStage : int
 {
 	FRAME_UNDEFINED = -1,
 	FRAME_START,
