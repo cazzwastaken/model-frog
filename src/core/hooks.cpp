@@ -8,9 +8,6 @@ void h::Init()
 	if (MH_Initialize())
 		throw std::runtime_error("Unable to initialize minhook");
 
-	if (MH_CreateHook(m::Get(i::client, 37), &FrameStageNotify, reinterpret_cast<void**>(&FrameStageNotifyOriginal)))
-		throw std::runtime_error("Unable to hook FrameStageNotify().");
-
 	if (MH_CreateHook(m::Get(i::mdlCache, 10), &FindMdl, reinterpret_cast<void**>(&FindMdlOriginal)))
 		throw std::runtime_error("Unable to hook FindMdl().");
 
@@ -31,17 +28,6 @@ void h::Shutdown() noexcept
 	MH_DisableHook(MH_ALL_HOOKS);
 	MH_RemoveHook(MH_ALL_HOOKS);
 	MH_Uninitialize();
-}
-
-void __stdcall h::FrameStageNotify(ClientFrameStage stage) noexcept
-{
-	// Empty for now
-	if (stage == ClientFrameStage::FRAME_RENDER_START)
-	{
-
-	}
-
-	return FrameStageNotifyOriginal(i::client, stage);
 }
 
 // https://www.unknowncheats.me/forum/counterstrike-global-offensive/214760-hooking-findmdl.html

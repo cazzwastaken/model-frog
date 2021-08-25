@@ -6,10 +6,6 @@ namespace h
 	void Init();
 	void Shutdown() noexcept;
 
-	using FrameStageNotifyFn = void(__thiscall*)(void*, ClientFrameStage);
-	inline FrameStageNotifyFn FrameStageNotifyOriginal = nullptr;
-	void __stdcall FrameStageNotify(ClientFrameStage stage) noexcept;
-
 	using FindMdlFn = unsigned long(__thiscall*)(void*, const char*);
 	inline FindMdlFn FindMdlOriginal = nullptr;
 	unsigned long __stdcall FindMdl(const char* path) noexcept;
