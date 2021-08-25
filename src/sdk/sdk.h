@@ -8,4 +8,3 @@
 #include "interfaces/engineclient.h"
 #include "interfaces/filesystem.h"
 #include "interfaces/mdlcache.h"
-#include "interfaces/netchannel.h"
