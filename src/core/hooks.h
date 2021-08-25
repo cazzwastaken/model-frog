@@ -8,17 +8,17 @@ namespace h
 
 	using FrameStageNotifyFn = void(__thiscall*)(void*, ClientFrameStage);
 	inline FrameStageNotifyFn FrameStageNotifyOriginal = nullptr;
-	void __stdcall FrameStageNotify(ClientFrameStage stage);
+	void __stdcall FrameStageNotify(ClientFrameStage stage) noexcept;
 
 	using FindMdlFn = unsigned long(__thiscall*)(void*, const char*);
 	inline FindMdlFn FindMdlOriginal = nullptr;
-	unsigned long __stdcall FindMdl(const char* path);
+	unsigned long __stdcall FindMdl(const char* path) noexcept;
 
 	using LooseFilesAllowedFn = bool(__thiscall*)(void*);
 	inline LooseFilesAllowedFn LooseFilesAllowedOriginal = nullptr;
-	bool __stdcall LooseFilesAllowed();
+	bool __stdcall LooseFilesAllowed() noexcept;
 
-	using SendNetMsgFn = bool(__thiscall*)(void*, NetMessage&, bool, bool);
-	inline SendNetMsgFn SendNetMsgOriginal = nullptr;
-	bool __stdcall SendNetMsg(NetMessage& message, bool forceReliable, bool voice);
+	using CL_CheckForPureServerWhitelistFn = void(__thiscall*)(void*);
+	inline CL_CheckForPureServerWhitelistFn CL_CheckForPureServerWhitelistOriginal = nullptr;
+	void __fastcall CL_CheckForPureServerWhitelist(void* edx, void* ecx) noexcept;
 }

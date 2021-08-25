@@ -17,6 +17,11 @@ void h::Init()
 	if (MH_CreateHook(m::Get(i::fileSystem, 128), &LooseFilesAllowed, reinterpret_cast<void**>(&LooseFilesAllowedOriginal)))
 		throw std::runtime_error("Unable to hook LooseFilesAllowed().");
 
+	if (MH_CreateHook(m::sigs.clCheckPureServerWhiteList,
+		&CL_CheckForPureServerWhitelist,
+		reinterpret_cast<void**>(&CL_CheckForPureServerWhitelistOriginal)))
+		throw std::runtime_error("Unable to hook CL_CheckForPureServerWhitelist().");
+
 	if (MH_EnableHook(MH_ALL_HOOKS))
 		throw std::runtime_error("Unable to enable hooks");
 }
@@ -28,36 +33,19 @@ void h::Shutdown() noexcept
 	MH_Uninitialize();
 }
 
-void __stdcall h::FrameStageNotify(ClientFrameStage stage)
+void __stdcall h::FrameStageNotify(ClientFrameStage stage) noexcept
 {
+	// Empty for now
 	if (stage == ClientFrameStage::FRAME_RENDER_START)
 	{
-		// Store NetChannel pointer
-		static auto oldNetChannel = i::engine->GetNetChannelInfo();
-		const auto netChannel = i::engine->GetNetChannelInfo();
 
-		// Hook SendNetMsg when NetChannel pointer changes
-		if (netChannel != oldNetChannel)
-		{
-			// Make sure NetChannel isn't null before hooking
-			if (netChannel)
-			{
-				const auto target = m::Get(netChannel, 42);
-
-				// Place & enable the hook
-				MH_CreateHook(target, &SendNetMsg, reinterpret_cast<void**>(&SendNetMsgOriginal));
-				MH_EnableHook(target);
-			}
-
-			oldNetChannel = netChannel;
-		}
 	}
 
 	return FrameStageNotifyOriginal(i::client, stage);
 }
 
 // https://www.unknowncheats.me/forum/counterstrike-global-offensive/214760-hooking-findmdl.html
-unsigned long __stdcall h::FindMdl(const char* path)
+unsigned long __stdcall h::FindMdl(const char* path) noexcept
 {
 	// Do sneaky model stuff here
 
@@ -70,21 +58,15 @@ unsigned long __stdcall h::FindMdl(const char* path)
 }
 
 // https://www.unknowncheats.me/forum/counterstrike-global-offensive/394153-fixing-chams-sv_pure_allow_loose_file_loads.html
-bool __stdcall h::LooseFilesAllowed()
+bool __stdcall h::LooseFilesAllowed() noexcept
 {
 	// Allow the files :think:
 	return true;
 }
 
-// https://www.unknowncheats.me/forum/counterstrike-global-offensive/279394-dumb-sv_pure-bypass.html
-bool __stdcall h::SendNetMsg(NetMessage& message, bool forceReliable, bool voice)
+// https://gitlab.com/KittenPopo/csgo-2018-source/-/blob/main/engine/cl_main.cpp#L1510
+void __fastcall h::CL_CheckForPureServerWhitelist(void* edx, void* ecx) noexcept
 {
-	// Dont send CRC check to server
-	if (message.GetType() == 14)
-		return false;
-
-	if (message.GetGroup() == 9)
-		voice = true;
-
-	return SendNetMsgOriginal(i::engine->GetNetChannelInfo(), message, forceReliable, voice);
+	// Stop the game from checking the whitelist lmao
+	return;
 }
