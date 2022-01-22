@@ -17,17 +17,13 @@ void Initialize(HMODULE module)
 	// Initialize cheat
 	try
 	{
+		// find sigs
 		m::Init();
-		i::Init();
-	}
-	catch (const std::exception& error)
-	{
-		MESSAGE(error.what());
-		FreeLibraryAndExitThread(module, EXIT_SUCCESS);
-	}
 
-	try
-	{
+		// capture interfaces
+		i::Init();
+
+		// emplace hooks
 		h::Init();
 	}
 	catch (const std::exception& error)
