@@ -53,15 +53,19 @@ uint8_t* m::Scan(const char* module, const char* pattern) noexcept
     auto s = bytes.size();
     auto d = bytes.data();
 
-    for (auto i = 0ul; i < size - s; ++i) {
+    for (auto i = 0ul; i < size - s; ++i)
+    {
         bool found = true;
 
-        for (auto j = 0ul; j < s; ++j) {
-            if (scanBytes[i + j] != d[j] && d[j] != -1) {
+        for (auto j = 0ul; j < s; ++j)
+        {
+            if (scanBytes[i + j] != d[j] && d[j] != -1)
+            {
                 found = false;
                 break;
             }
         }
+
         if (found)
             return &scanBytes[i];
     }
