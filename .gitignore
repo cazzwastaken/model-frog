@@ -1,5 +1,6 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,c++,visualstudio
+
+# Created by https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudio,executable
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,c++,visualstudio,executable
 
 ### C++ ###
 # Prerequisites
@@ -10,10 +11,6 @@
 *.lo
 *.o
 *.obj
-
-#idk
-*.exe.recipe
-*.FileListAbsolute.txt
 
 # Precompiled Headers
 *.gch
@@ -32,12 +29,21 @@
 *.lai
 *.la
 *.a
-*.lib
 
 # Executables
 *.exe
 *.out
 *.app
+
+### Executable ###
+*.bat
+*.cgi
+*.com
+*.gadget
+*.jar
+*.pif
+*.vb
+*.wsf
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -99,7 +105,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
-intermediates/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
@@ -164,6 +169,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.recipe
 
 # Chutzpah Test files
 _Chutzpah*
@@ -274,7 +280,7 @@ PublishScripts/
 *.nuget.targets
 
 # Nuget personal access tokens and Credentials
-nuget.config
+# nuget.config
 
 # Microsoft Azure Build Output
 csx/
@@ -452,4 +458,4 @@ FodyWeavers.xsd
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudio
+# End of https://www.toptal.com/developers/gitignore/api/windows,c++,visualstudio,executable
